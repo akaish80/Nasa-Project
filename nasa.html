@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100d13">
+<title>The Mars Files — Spirit &amp; Opportunity</title>
+
+<style>
+:root{
+--bg:#100d13;
+--panel:#201a22;
+--rust:#ef8756;
+--gold:#f6c88d;
+--blue:#9fc9e8;
+--ink:#f7f0e9;
+--muted:#c7bbb5
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--ink);
+font:16px/1.65 Arial,sans-serif
+}
+
+nav{
+position:relative;
+z-index:2;
+background:#100d13ed;
+backdrop-filter:blur(10px);
+padding:12px 5%;
+display:flex;
+justify-content:space-between;
+gap:12px;
+align-items:center;
+border-bottom:1px solid #ffffff20
+}
+
+nav b{letter-spacing:2px;color:var(--gold)}
+nav div{display:flex;gap:15px;flex-wrap:wrap}
+nav a{color:var(--ink);text-decoration:none;font-size:.88rem}
+
+.hero{
+min-height:84vh;
+display:grid;
+place-items:center;
+text-align:center;
+padding:65px 7%;
+background:
+radial-gradient(ellipse at 25% 40%,#d96d3c55,transparent 38%),
+radial-gradient(ellipse at 78% 30%,#6c91b555,transparent 36%),
+linear-gradient(145deg,#15101a,#3a1d20 55%,#100d13)
+}
+
+.hero-inner{max-width:850px}
+
+.eyebrow{
+color:var(--gold);
+letter-spacing:4px;
+text-transform:uppercase;
+font-size:.78rem
+}
+
+.hero h1{
+font-size:clamp(2.8rem,8vw,6.5rem);
+line-height:1;
+margin:15px 0
+}
+
+.hero h1 span{color:var(--rust)}
+.hero p{max-width:720px;margin:20px auto;color:#e3d8d2;font-size:1.1rem}
+
+.cta,.action{
+display:inline-block;
+border:0;
+border-radius:28px;
+background:var(--rust);
+color:#1a1010;
+padding:11px 21px;
+font-weight:bold;
+text-decoration:none;
+cursor:pointer
+}
+
+section{max-width:1150px;margin:auto;padding:72px 7%}
+
+.eyebrow2{
+color:var(--gold);
+letter-spacing:3px;
+text-transform:uppercase;
+font-size:.78rem
+}
+
+.heading{
+font-size:clamp(2rem,5vw,3.1rem);
+line-height:1.1;
+margin:8px 0 14px
+}
+
+.lead{color:var(--muted);max-width:820px}
+
+.twins{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+margin-top:25px
+}
+
+.twin{
+padding:23px;
+border-radius:16px;
+background:linear-gradient(145deg,#2a222c,#19161e);
+border:1px solid #ffffff20
+}
+
+.twin.spirit{border-top:3px solid var(--blue)}
+.twin.opp{border-top:3px solid var(--rust)}
+.twin p{color:var(--muted);margin-bottom:0}
+
+/* TIMELINE */
+
+.timeline{
+position:relative;
+max-width:900px;
+margin:40px auto 0
+}
+
+.timeline:before{
+content:"";
+position:absolute;
+left:50%;
+top:0;
+bottom:0;
+width:3px;
+background:linear-gradient(var(--blue),var(--rust));
+transform:translateX(-50%)
+}
+
+.event{
+position:relative;
+width:50%;
+padding:0 44px 30px 0;
+opacity:0;
+transform:translateX(-28px);
+transition:.7s
+}
+
+.event:nth-child(even){
+margin-left:50%;
+padding:0 0 30px 44px;
+transform:translateX(28px)
+}
+
+.event.visible{opacity:1;transform:translateX(0)}
+
+.pin{
+position:absolute;
+right:-9px;
+top:20px;
+width:18px;
+height:18px;
+border-radius:50%;
+background:var(--gold);
+border:3px solid var(--bg)
+}
+
+.event:nth-child(even) .pin{right:auto;left:-9px}
+
+.event-card{
+padding:20px;
+border-radius:15px;
+background:var(--panel);
+border:1px solid #ffffff20
+}
+
+.date{color:var(--gold);font-size:.82rem;font-weight:bold}
+.event-card h3{margin:5px 0}
+.event-card p{color:var(--muted);margin:0}
+
+.tag{
+display:inline-block;
+margin-top:10px;
+border:1px solid #ffffff35;
+padding:2px 10px;
+border-radius:20px;
+font-size:.75rem;
+color:var(--gold)
+}
+
+/* THE LAST SIGNAL STORY */
+
+.novel-wrap{
+margin-top:28px;
+padding:22px;
+border-radius:20px;
+background:linear-gradient(145deg,#2a2025,#17151d);
+border:1px solid #ffffff24;
+box-shadow:0 18px 50px #0006
+}
+
+.novel-top{
+display:flex;
+justify-content:space-between;
+gap:10px;
+align-items:center;
+flex-wrap:wrap;
+color:var(--muted);
+font-size:.9rem
+}
+
+.progress{
+height:5px;
+background:#ffffff20;
+border-radius:9px;
+overflow:hidden;
+margin:13px 0 20px
+}
+
+.progress span{
+display:block;
+height:100%;
+width:25%;
+background:var(--rust);
+transition:width .35s
+}
+
+.story-stage{max-width:850px;margin:auto}
+
+.story-page{
+background:#f3e4cf;
+color:#281c1a;
+border:8px solid #39272a;
+border-radius:8px;
+box-shadow:0 16px 38px #0008;
+padding:clamp(20px,4vw,38px);
+min-height:500px;
+animation:pageIn .45s ease
+}
+
+@keyframes pageIn{
+from{opacity:.4;transform:translateX(15px)}
+to{opacity:1;transform:translateX(0)}
+}
+
+.chapter-label{
+font:bold .75rem Arial,sans-serif;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#9b5a3f;
+margin-bottom:8px
+}
+
+.story-page h3{
+font-family:Georgia,serif;
+font-size:clamp(1.7rem,4vw,2.5rem);
+line-height:1.15;
+margin:0 0 20px;
+color:#39272a
+}
+
+.chapter-image{
+height:210px;
+margin:0 0 24px;
+border-radius:7px;
+overflow:hidden;
+background:
+radial-gradient(circle at 75% 20%,#f7c88d 0 7%,transparent 8%),
+linear-gradient(155deg,#8f4935,#d47a4a 55%,#4a2a35);
+display:flex;
+align-items:center;
+justify-content:center;
+color:#fff1df;
+font-size:.85rem;
+letter-spacing:1px;
+text-align:center;
+padding:15px;
+position:relative
+}
+
+.chapter-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block
+}
+
+.chapter-text{
+font-family:Georgia,serif;
+font-size:1rem;
+line-height:1.85;
+color:#332528
+}
+
+.chapter-text p{margin:0 0 15px}
+.chapter-text strong{color:#7b3f32}
+.chapter-text em{color:#7b3f32}
+
+.dialogue{
+background:#e5c7aa;
+border-left:4px solid #b96848;
+padding:12px 16px;
+margin:16px 0;
+border-radius:0 8px 8px 0;
+font-family:Georgia,serif
+}
+
+.dialogue strong{
+display:block;
+color:#824735;
+margin-bottom:4px;
+font-family:Arial,sans-serif;
+font-size:.78rem;
+letter-spacing:1px;
+text-transform:uppercase
+}
+
+.chapter-end{
+text-align:center;
+font-family:Georgia,serif;
+font-weight:bold;
+font-style:italic;
+color:#8b4938;
+margin-top:25px
+}
+
+.page-controls{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+margin-top:18px
+}
+
+.page-controls button{
+border:1px solid #ffffff35;
+background:#29232b;
+color:var(--ink);
+padding:10px 17px;
+border-radius:25px;
+cursor:pointer
+}
+
+.page-controls button:disabled{opacity:.35;cursor:not-allowed}
+
+.page-controls .next{
+background:var(--rust);
+color:#21130f;
+border:0;
+font-weight:bold
+}
+
+.page-note{color:var(--muted);font-size:.85rem;margin-top:14px}
+
+/* AUDIO AND QUIZ */
+
+.audio-box,.quiz-box{
+margin-top:22px;
+padding:23px;
+border-radius:17px;
+background:var(--panel);
+border:1px solid #ffffff20
+}
+
+audio{width:100%;margin-top:12px}
+
+/* SLIDING QUIZ */
+
+.quiz-progress{
+color:var(--gold);
+font-weight:bold;
+margin-bottom:15px
+}
+
+.quiz-progress-bar{
+height:6px;
+background:#ffffff20;
+border-radius:10px;
+margin-bottom:22px;
+overflow:hidden
+}
+
+.quiz-progress-bar span{
+display:block;
+height:100%;
+background:var(--rust);
+transition:width .4s ease
+}
+
+.quiz-slide{
+animation:quizSlide .4s ease
+}
+
+@keyframes quizSlide{
+from{
+opacity:0;
+transform:translateX(35px)
+}
+to{
+opacity:1;
+transform:translateX(0)
+}
+}
+
+.quiz-q{
+padding:16px 0;
+border-bottom:1px solid #ffffff20
+}
+
+.quiz-q p{font-weight:bold}
+
+.quiz-q button{
+display:block;
+width:100%;
+text-align:left;
+margin:7px 0;
+padding:11px 13px;
+border:1px solid #65565d;
+border-radius:9px;
+background:#17141c;
+color:var(--ink);
+cursor:pointer
+}
+
+.quiz-q button.right{background:#17432f;border-color:#62c68b}
+.quiz-q button.wrong{background:#52282a;border-color:#e58a83}
+
+.quiz-q button:disabled{
+cursor:default;
+opacity:1
+}
+
+#quizFeedback{
+color:var(--gold);
+font-size:.9rem;
+margin-top:12px
+}
+
+#score{
+color:var(--gold);
+font-size:1rem;
+font-weight:bold;
+margin-top:12px
+}
+
+.badge-award{
+margin-top:20px;
+padding:22px;
+border:2px solid var(--gold);
+border-radius:15px;
+text-align:center;
+background:linear-gradient(145deg,#382b26,#201a22)
+}
+
+.badge-award h3{
+color:var(--gold);
+letter-spacing:2px
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#aa9e9a;
+border-top:1px solid #ffffff20;
+font-size:.85rem
+}
+
+/* CINEMATIC INTRO */
+
+.intro{
+position:fixed;
+inset:0;
+z-index:1000;
+background:#02040a;
+display:grid;
+place-items:center;
+text-align:center;
+padding:24px;
+transition:opacity .8s ease
+}
+
+.intro.hidden{opacity:0;pointer-events:none}
+
+.intro-stars{
+position:absolute;
+inset:0;
+background-image:radial-gradient(#fff 1px,transparent 1px);
+background-size:48px 48px;
+opacity:.5;
+pointer-events:none
+}
+
+.crawl-wrap{
+height:55vh;
+max-width:700px;
+width:100%;
+overflow:hidden;
+perspective:300px;
+position:relative;
+z-index:1
+}
+
+.crawl{
+color:#f4d36e;
+font-size:1.2rem;
+font-weight:bold;
+line-height:1.8;
+transform:rotateX(18deg);
+animation:marsCrawl 35s linear forwards
+}
+
+.crawl h2{color:#f2c66d}
+
+@keyframes marsCrawl{
+from{transform:rotateX(18deg) translateY(70%)}
+to{transform:rotateX(18deg) translateY(-120%)}
+}
+
+.intro-controls{
+position:absolute;
+z-index:2;
+bottom:24px;
+display:flex;
+gap:12px;
+justify-content:center;
+flex-wrap:wrap
+}
+
+.intro-controls button{
+cursor:pointer;
+border:0;
+border-radius:8px;
+padding:12px 18px;
+font-weight:bold;
+background:#f2c66d;
+color:#17131a
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+nav{align-items:flex-start;flex-direction:column}
+.timeline:before{left:8px}
+
+.event,.event:nth-child(even){
+width:100%;
+margin-left:0;
+padding:0 0 25px 35px;
+transform:translateX(15px)
+}
+
+.event.visible{transform:translateX(0)}
+
+.pin,.event:nth-child(even) .pin{
+left:0;
+right:auto
+}
+
+.twins{grid-template-columns:1fr}
+.novel-wrap{padding:13px}
+.story-page{padding:20px;min-height:unset}
+.chapter-image{height:160px}
+section{padding:55px 6%}
+.crawl-wrap{height:58vh}
+.crawl{font-size:1rem}
+.intro-controls{bottom:16px}
+.page-controls button{padding:9px 12px;font-size:.85rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+.event{transition:none}
+}
+</style>
+</head>
+
+<body>
+
+<!-- CINEMATIC OPENING -->
+
+<div class="intro" id="intro">
+<div class="intro-stars" aria-hidden="true"></div>
+
+<div class="crawl-wrap">
+<div class="crawl">
+<p class="eyebrow">A planetary investigation</p>
+<h2>THE MARS FILES</h2>
+<p>In 2003, two robotic explorers began a journey to the Red Planet.</p>
+<p>Their names were Spirit and Opportunity.</p>
+<p>Their mission was to investigate the Martian surface and search for clues about its ancient past.</p>
+<p>What they discovered changed how scientists understood water on Mars.</p>
+<h2>TWO ROVERS. ONE MYSTERY.</h2>
+</div>
+</div>
+
+<div class="intro-controls">
+<button type="button" onclick="enterSite()">Begin the Mission</button>
+</div>
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+<b>SPIRIT & OPPORTUNITY</b>
+<div>
+<a href="#twins">Meet them</a>
+<a href="#timeline">Timeline</a>
+<a href="#graphic-novel">Read the story</a>
+<a href="#audio">Listen</a>
+<a href="#quiz">Quiz</a>
+</div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero">
+<div class="hero-inner">
+<div class="eyebrow">NASA · Mars Exploration Rover Mission</div>
+<h1>SPIRIT <span>&</span><br>OPPORTUNITY</h1>
+<p>
+<b>Two robotic twins. Two paths across Mars. One extraordinary mission.</b><br>
+Travel through their real journey, explore their discoveries and read their adventure.
+</p>
+<a class="cta" href="#twins">Begin exploring ↓</a>
+</div>
+</header>
+
+<!-- MEET THE ROVERS -->
+
+<section id="twins">
+<div class="eyebrow2">Meet the explorers</div>
+<h2 class="heading">A shared mission. Two different worlds.</h2>
+<p class="lead">
+NASA launched Spirit and Opportunity in 2003 to investigate whether places on Mars had once been wet and could have had conditions suitable for life. They were robotic geologists, sent to explore different landing sites.
+</p>
+
+<div class="twins">
+<article class="twin spirit">
+<div class="eyebrow2">Spirit · Gusev Crater</div>
+<h3>Spirit</h3>
+<p>
+Spirit landed on January 4, 2004. It explored Gusev Crater and the Columbia Hills, finding rocks and soil that recorded a complex history involving water and volcanic processes.
+</p>
+</article>
+
+<article class="twin opp">
+<div class="eyebrow2">Opportunity · Meridiani Planum</div>
+<h3>Opportunity</h3>
+<p>
+Opportunity landed on January 25, 2004. It found evidence that liquid water had affected rocks in its region and travelled much farther than its planned mission.
+</p>
+</article>
+</div>
+</section>
+
+<!-- TIMELINE -->
+
+<section id="timeline">
+<div class="eyebrow2">Mission timeline</div>
+<h2 class="heading">Follow their tracks across Mars</h2>
+<p class="lead">Scroll to reveal the key moments in both missions.</p>
+
+<div class="timeline">
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">JUNE 10, 2003</div>
+<h3>Spirit launches</h3>
+<p>Spirit leaves Earth aboard a Delta II rocket, heading for Gusev Crater.</p>
+<span class="tag">SPIRIT</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">JULY 7, 2003</div>
+<h3>Opportunity follows</h3>
+<p>Opportunity launches on a second Delta II rocket toward Meridiani Planum.</p>
+<span class="tag">OPPORTUNITY</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">JANUARY 4, 2004</div>
+<h3>Spirit lands</h3>
+<p>Spirit touches down in Gusev Crater and begins exploring the Martian surface.</p>
+<span class="tag">SPIRIT</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">JANUARY 25, 2004</div>
+<h3>Opportunity lands</h3>
+<p>Opportunity arrives at Meridiani Planum, on the opposite side of the planet from Spirit.</p>
+<span class="tag">OPPORTUNITY</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">2004–2006</div>
+<h3>Clues from ancient water</h3>
+<p>Opportunity studies layered rocks and iron-rich spherules nicknamed “blueberries.” Spirit explores the Columbia Hills and finds silica-rich soil.</p>
+<span class="tag">BOTH ROVERS</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">2004–2008</div>
+<h3>Opportunity explores the craters</h3>
+<p>Opportunity investigates Endurance and Victoria craters, examining rock layers that help scientists reconstruct Mars's geological history.</p>
+<span class="tag">OPPORTUNITY</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">MARCH 2010</div>
+<h3>Spirit's final communication</h3>
+<p>After becoming stuck in soft soil, Spirit stops communicating. NASA's final communication attempt takes place on March 22, 2010.</p>
+<span class="tag">SPIRIT</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">2011–2018</div>
+<h3>Opportunity keeps travelling</h3>
+<p>Opportunity reaches Endeavour Crater and continues its science work. A planet-wide dust storm in 2018 blocks sunlight from its solar panels.</p>
+<span class="tag">OPPORTUNITY</span>
+</div>
+</article>
+
+<article class="event">
+<span class="pin"></span>
+<div class="event-card">
+<div class="date">FEBRUARY 13, 2019</div>
+<h3>The twin mission concludes</h3>
+<p>NASA declares the Opportunity mission complete after months without contact. The two rovers had far exceeded their planned lifetimes.</p>
+<span class="tag">MISSION LEGACY</span>
+</div>
+</article>
+
+</div>
+</section>
+
+<!-- THE LAST SIGNAL -->
+
+<section id="graphic-novel">
+<div class="eyebrow2">The complete story</div>
+<h2 class="heading">The Last Signal</h2>
+<p class="lead">
+Built together on Earth. Sent to different parts of Mars. Follow the four chapters of Spirit and Opportunity's extraordinary journey.
+</p>
+
+<div class="novel-wrap">
+<div class="novel-top">
+<span>THE CHRONICLES OF SPIRIT & OPPORTUNITY</span>
+<span id="pageCount">Chapter 1 of 4</span>
+</div>
+
+<div class="progress">
+<span id="progressBar"></span>
+</div>
+
+<div class="story-stage">
+<div class="story-page" id="storyPage" aria-live="polite"></div>
+</div>
+
+<div class="page-controls">
+<button id="prevPage" type="button" onclick="changePage(-1)" disabled>← Previous chapter</button>
+<span style="color:var(--muted);font-size:.85rem" id="chapterHint">Chapter 1</span>
+<button id="nextPage" class="next" type="button" onclick="changePage(1)">Next chapter →</button>
+</div>
+
+<p class="page-note">
+The story is a creative retelling of the mission.
+</p>
+</div>
+</section>
+
+<!-- DISCOVERIES -->
+
+<section id="discoveries">
+<div class="eyebrow2">Science behind the story</div>
+<h2 class="heading">What did the twins discover?</h2>
+
+<div class="twins">
+<article class="twin spirit">
+<h3>Spirit's scientific clues</h3>
+<p>
+Spirit found silica-rich soil and rocks altered by water in the Columbia Hills. These clues helped scientists investigate ancient environments involving hot water.
+</p>
+</article>
+
+<article class="twin opp">
+<h3>Opportunity's scientific clues</h3>
+<p>
+Opportunity found iron-rich spherules and layered rocks showing that liquid water had affected the region in the distant past. Its crater explorations exposed layers from Mars's geological history.
+</p>
+</article>
+</div>
+
+<p class="lead" style="margin-top:20px">
+The rovers did not discover life. They found evidence that helped scientists understand whether ancient Mars had environments where liquid water could exist.
+</p>
+</section>
+
+<!-- AUDIO -->
+
+<section id="audio">
+<div class="eyebrow2">Listen along</div>
+<h2 class="heading">The Mission, Narrated</h2>
+
+<p class="lead">
+Listen to the story of Spirit and Opportunity as they explore the mysteries of the Red Planet.
+</p>
+
+<div class="audio-box">
+<h3>🎧 The Mars Files — Official Narration</h3>
+
+<audio id="audioPlayer" controls preload="metadata">
+<source src="narration.mpeg" type="audio/mpeg">
+Your browser does not support audio.
+</audio>
+
+<p style="color:var(--muted);font-size:.85rem">
+Press play to listen to the narration.
+</p>
+</div>
+</section>
+
+<!-- SLIDING QUIZ -->
+
+<section id="quiz">
+<div class="eyebrow2">Final mission check</div>
+<h2 class="heading">How well do you know the twins?</h2>
+<p class="lead">Answer these questions to complete your mission.</p>
+
+<div class="quiz-box" id="quizBox">
+<div id="quizProgress"></div>
+<div id="quizQuestion"></div>
+<div id="quizFeedback"></div>
+
+<button id="nextQuestion" class="cta" type="button"
+onclick="nextQuizQuestion()" style="display:none">
+Next Question →
+</button>
+</div>
+
+<div id="score" aria-live="polite"></div>
+
+<button class="cta" id="retryQuiz" type="button"
+onclick="buildQuiz()" style="display:none">
+Try again ↻
+</button>
+</section>
+
+<footer>
+SPIRIT & OPPORTUNITY · TWO ROBOTIC GEOLOGISTS · ONE EXTRAORDINARY MARS MISSION
+<br>
+Educational project template. Add image credits and verify final facts against NASA mission sources.
+</footer>
+
+<script>
+
+/* TIMELINE ANIMATION */
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
+if(e.isIntersecting){
+e.target.classList.add('visible');
+observer.unobserve(e.target);
+}
+}),{threshold:.13});
+
+document.querySelectorAll('.event').forEach(e=>observer.observe(e));
+
+/* THE LAST SIGNAL - FOUR CHAPTERS */
+
+const chapters=[
+
+{
+title:"Built Together",
+label:"CHAPTER 1 · THE BEGINNING",
+imageText:"NASA CLEANROOM · 2003",
+content:`
+
+<p>In 2003, inside a brightly lit NASA cleanroom, two identical rovers stood a few meters apart. Engineers moved constantly between them, checking cameras, testing instruments, examining wires, and reviewing software. Every detail mattered. Once the rovers left Earth, there would be no second chances. If something failed on Mars, it would stay failed.</p>
+
+<p>The two machines were named <strong>Spirit</strong> and <strong>Opportunity</strong>. They shared the same design, the same purpose, and the same dream created by hundreds of scientists and engineers. Among them was <strong>Steve Squyres</strong>, the Principal Investigator of the Mars Exploration Rover mission. For years, he had been asking one question: <em>Was Mars ever wet enough to support environments similar to those on Earth?</em></p>
+
+<p>The rovers were prepared for their launch. Engineers completed inspections, tested their systems and checked their landing equipment. Their planned mission was only ninety sols — about three months on Mars.</p>
+
+<p>The landing system was designed to protect them as they entered the Martian atmosphere. Giant airbags would cushion their impact as they bounced across the surface.</p>
+
+<p>Built side by side on Earth, they would soon travel to completely different parts of Mars.</p>
+
+<div class="chapter-end">Two machines. One mission. The journey begins.</div>
+`
+},
+
+{
+title:"Two Explorers, Two Stories",
+label:"CHAPTER 2 · ARRIVAL ON MARS",
+imageText:"TWO LANDING SITES · TWO DIFFERENT WORLDS",
+content:`
+
+<p>Mars separated the twins almost immediately.</p>
+
+<p>Spirit landed safely in <strong>Gusev Crater</strong> on January 4, 2004. Scientists believed the crater might once have been an ancient lake, making it a promising place to search for signs of past water.</p>
+
+<p>Three weeks later, Opportunity landed in <strong>Meridiani Planum</strong>, thousands of kilometers away on the opposite side of the planet.</p>
+
+<p>Spirit began examining the rocks and soil around Gusev Crater. The landscape contained many volcanic rocks, and scientists continued investigating the region for evidence of past water.</p>
+
+<p>For weeks Spirit continued its search. The rover climbed hills, crossed rough terrain, and carefully studied the geology around Gusev Crater.</p>
+
+<p>Meanwhile, Opportunity encountered a very different landscape. Its cameras revealed layers of rock, small rounded formations and patterns that attracted the attention of scientists.</p>
+
+<p>The tiny gray spheres scattered across the Martian surface soon became famous. Scientists nicknamed them <strong>"blueberries."</strong> They were made largely of hematite, a mineral that can form in the presence of water.</p>
+
+<p>Back on Earth, excitement spread through mission control.</p>
+
+<div class="dialogue">
+<strong>Steve Squyres</strong>
+"We came to Mars looking for evidence of ancient water. These findings are some of the strongest clues we've ever seen."
+</div>
+
+<p>As Spirit and Opportunity explored separate worlds on the same planet, they were slowly revealing different chapters of Mars's history.</p>
+
+<div class="chapter-end">Different landscapes. Different clues. One scientific mystery.</div>
+`
+},
+
+{
+title:"The Rovers That Refused to Quit",
+label:"CHAPTER 3 · BEYOND THE MISSION",
+imageText:"EXPLORING CRATERS, HILLS AND ANCIENT ROCKS",
+content:`
+
+<p>Ninety sols passed.</p>
+<p>Then a year.</p>
+<p>Then two.</p>
+<p>Then five.</p>
+
+<p>The mission that was designed to last only three months continued far beyond anyone's expectations.</p>
+
+<p>Opportunity became a traveling geologist, exploring Endurance Crater, Victoria Crater, and eventually the enormous Endeavour Crater. Every rock layer revealed new information about ancient Martian environments and the role water once played in shaping them.</p>
+
+<p>Across the planet, Spirit's journey became increasingly difficult. One of its wheels stopped working, forcing the rover to drag it behind while driving.</p>
+
+<p>As the damaged wheel scraped through the Martian soil, it accidentally exposed bright silica-rich deposits hidden beneath the surface.</p>
+
+<p>Back on Earth, scientists were astonished.</p>
+
+<div class="dialogue">
+<strong>Steve Squyres</strong>
+"This is incredible. These materials are similar to deposits that can form around hot springs on Earth."
+</div>
+
+<p>What looked like a mechanical failure became one of the mission's greatest discoveries. The deposits suggested that hot water may once have existed on Mars, creating environments that were far more active than scientists had imagined.</p>
+
+<p>Together, even while separated by thousands of kilometers, Spirit and Opportunity were transforming humanity's understanding of the Red Planet.</p>
+
+<div class="chapter-end">Their planned mission was over. Their discoveries were just beginning.</div>
+`
+},
+
+{
+title:"The Last Signal",
+label:"CHAPTER 4 · THE FINAL CHAPTER",
+imageText:"THE MARTIAN DUST STORM · 2018",
+content:`
+
+<p>In 2009, Spirit encountered a challenge it could not overcome.</p>
+
+<p>The rover became trapped in a patch of soft soil known as <strong>Troy</strong>.</p>
+
+<p>Engineers spent months trying to free it. Commands traveled millions of kilometers between Earth and Mars. New driving techniques were tested. Simulations ran constantly.</p>
+
+<p>Nothing worked.</p>
+
+<p>Winter approached, sunlight decreased, and Spirit's solar panels collected less energy each day.</p>
+
+<p>Eventually, Spirit's power became too low to continue communicating.</p>
+
+<p>Mission control continued calling.</p>
+<p>The rover never answered.</p>
+<p>Spirit had completed its journey.</p>
+
+<p>Yet Opportunity kept going.</p>
+
+<p>Year after year, it continued exploring, eventually travelling more than 28 miles across the Martian surface. The rover that was expected to survive for ninety days kept working for almost fifteen years.</p>
+
+<p>Then, in 2018, a global dust storm spread across Mars.</p>
+
+<p>The sky darkened.</p>
+<p>Sunlight disappeared.</p>
+<p>Opportunity's batteries began to drain.</p>
+
+<p>Back on Earth, engineers watched the incoming data.</p>
+
+<div class="dialogue">
+<strong>Engineer</strong>
+"Power levels are dropping."
+</div>
+
+<p>The room fell silent.</p>
+
+<p>Opportunity continued working as long as possible.</p>
+<p>It sent weather observations.</p>
+<p>Engineering data.</p>
+<p>Scientific measurements.</p>
+<p>Everything it could.</p>
+
+<p>Then its energy reserves grew too low.</p>
+
+<p>The final signal crossed millions of kilometers of space and reached Earth.</p>
+
+<p>Then Mars fell silent.</p>
+
+<p>Today, Spirit remains in Gusev Crater and Opportunity rests in Perseverance Valley. The two rovers never met again after leaving Earth. One discovered evidence of ancient hydrothermal activity. The other revealed strong evidence that liquid water once existed on Mars.</p>
+
+<p><strong>Built together. Sent apart. Working alone.</strong></p>
+
+<p>Yet together, they helped rewrite humanity's understanding of an entire planet.</p>
+
+<div class="chapter-end">THE END</div>
+`
+}
+
+];
+
+let currentChapter=0;
+
+/* DISPLAY CHAPTER */
+
+function renderChapter(){
+const chapter=chapters[currentChapter];
+const page=document.getElementById('storyPage');
+
+page.innerHTML=`
+<div class="chapter-label">${chapter.label}</div>
+<h3>${chapter.title}</h3>
+<div class="chapter-image">${chapter.imageText}</div>
+<div class="chapter-text">${chapter.content}</div>
+`;
+
+document.getElementById('pageCount').textContent=
+'Chapter '+(currentChapter+1)+' of '+chapters.length;
+
+document.getElementById('progressBar').style.width=
+((currentChapter+1)/chapters.length*100)+'%';
+
+document.getElementById('prevPage').disabled=currentChapter===0;
+document.getElementById('nextPage').disabled=
+currentChapter===chapters.length-1;
+
+document.getElementById('nextPage').textContent=
+currentChapter===chapters.length-1
+?'Story complete ✓'
+:'Next chapter →';
+
+document.getElementById('chapterHint').textContent=chapter.title;
+}
+
+/* CHAPTER NAVIGATION */
+
+function changePage(step){
+currentChapter=Math.max(
+0,
+Math.min(chapters.length-1,currentChapter+step)
+);
+
+renderChapter();
+
+document.getElementById('graphic-novel').scrollIntoView({
+behavior:'smooth',
+block:'start'
+});
+}
+
+renderChapter();
+
+/* SLIDING QUIZ QUESTIONS */
+
+const qs=[
+{
+q:'What were the names of the two Mars rovers in the story?',
+a:[
+'Curiosity and Perseverance',
+'Spirit and Opportunity',
+'Pathfinder and Sojourner',
+'Viking 1 and Viking 2'
+],
+c:1,
+why:'Spirit and Opportunity were the two robotic explorers sent to Mars in 2003.'
+},
+{
+q:'What was the original mission duration planned for each rover?',
+a:[
+'30 days',
+'1 year',
+'90 sols (Martian days)',
+'10 years'
+],
+c:2,
+why:'Each rover was originally designed to operate for 90 sols, approximately three months.'
+},
+{
+q:'Why was Opportunity’s discovery of the "blueberries" important?',
+a:[
+'They proved Mars had volcanoes',
+'They showed signs that water once existed on Mars',
+'They helped Opportunity move faster',
+'They were edible minerals'
+],
+c:1,
+why:'The iron-rich spherules provided evidence of water-related geological processes on ancient Mars.'
+},
+{
+q:'What happened to Spirit in 2009?',
+a:[
+'It fell into a crater',
+'It returned to Earth',
+'It became trapped in soft soil at Troy',
+'Its cameras stopped working'
+],
+c:2,
+why:'Spirit became trapped in soft soil at a location known as Troy.'
+},
+{
+q:'Which statement best describes Spirit and Opportunity?',
+a:[
+'They explored Mars together side by side.',
+'They landed on the same crater.',
+'They were built together on Earth but explored different parts of Mars.',
+'They met again at the end of the mission.'
+],
+c:2,
+why:'The rovers were built together but landed at different locations on Mars and explored independently.'
+}
+];
+
+let currentQuestion=0;
+let score=0;
+let answered=false;
+
+/* BUILD / RESTART QUIZ */
+
+function buildQuiz(){
+currentQuestion=0;
+score=0;
+answered=false;
+
+document.getElementById('score').textContent='';
+document.getElementById('retryQuiz').style.display='none';
+document.getElementById('nextQuestion').style.display='none';
+
+showQuizQuestion();
+}
+
+/* SHOW ONE QUESTION AT A TIME */
+
+function showQuizQuestion(){
+
+const q=qs[currentQuestion];
+
+const questionArea=document.getElementById('quizQuestion');
+const feedback=document.getElementById('quizFeedback');
+const next=document.getElementById('nextQuestion');
+
+answered=false;
+feedback.textContent='';
+next.style.display='none';
+
+document.getElementById('quizProgress').innerHTML=`
+<div class="quiz-progress">
+QUESTION ${currentQuestion+1} OF ${qs.length}
+</div>
+<div class="quiz-progress-bar">
+<span style="width:${(currentQuestion+1)/qs.length*100}%"></span>
+</div>
+`;
+
+questionArea.innerHTML=`
+<div class="quiz-slide">
+<div class="quiz-q">
+<p>${currentQuestion+1}. ${q.q}</p>
+${q.a.map((answer,index)=>`
+<button type="button" onclick="selectQuizAnswer(${index})">
+${String.fromCharCode(65+index)}. ${answer}
+</button>
+`).join('')}
+</div>
+</div>
+`;
+}
+
+/* CHECK ANSWER */
+
+function selectQuizAnswer(index){
+
+if(answered)return;
+
+answered=true;
+
+const q=qs[currentQuestion];
+const buttons=document.querySelectorAll('#quizQuestion .quiz-q button');
+
+buttons.forEach((button,i)=>{
+button.disabled=true;
+
+if(i===q.c){
+button.classList.add('right');
+}
+});
+
+if(index===q.c){
+score++;
+
+document.getElementById('quizFeedback').textContent=
+'✓ Correct! '+q.why;
+
+}else{
+buttons[index].classList.add('wrong');
+
+document.getElementById('quizFeedback').textContent=
+'Not quite! '+q.why;
+}
+
+const next=document.getElementById('nextQuestion');
+
+next.textContent=
+currentQuestion===qs.length-1
+?'View Results →'
+:'Next Question →';
+
+next.style.display='inline-block';
+}
+
+/* MOVE TO NEXT QUESTION */
+
+function nextQuizQuestion(){
+
+if(!answered)return;
+
+currentQuestion++;
+
+if(currentQuestion<qs.length){
+showQuizQuestion();
+}else{
+showQuizResults();
+}
+}
+
+/* FINAL RESULTS */
+
+function showQuizResults(){
+
+document.getElementById('quizProgress').innerHTML=
+'<div class="quiz-progress">MISSION RESULTS</div>';
+
+document.getElementById('quizQuestion').innerHTML=`
+<div class="quiz-slide" style="text-align:center;padding:20px">
+<h2>Mission Complete!</h2>
+<h1 style="color:var(--gold);font-size:3rem">${score} / 5</h1>
+<p>${score===5
+?'Outstanding work, explorer!'
+:'Well done for completing the investigation!'}</p>
+
+${score===5?`
+<div class="badge-award">
+<h3>✦ MARS FILES ✦</h3>
+<h2>MISSION EXPERT</h2>
+<p>Officially completed the Mars Files investigation.</p>
+<p>SPIRIT & OPPORTUNITY · MARS EXPLORATION</p>
+</div>
+`:''}
+</div>
+`;
+
+document.getElementById('quizFeedback').textContent='';
+document.getElementById('nextQuestion').style.display='none';
+document.getElementById('retryQuiz').style.display='inline-block';
+}
+
+buildQuiz();
+
+/* INTRO */
+
+function enterSite(){
+const intro=document.getElementById('intro');
+if(!intro)return;
+
+intro.classList.add('hidden');
+
+window.setTimeout(()=>{
+intro.style.display='none';
+},800);
+}
+
+</script>
+
+</body>
+</html>
