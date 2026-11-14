@@ -1306,6 +1306,8 @@ buildQuiz();
 
 /* INTRO */
 
+document.querySelector('.intro .crawl').addEventListener('animationend',enterSite,{once:true});
+
 function enterSite(){
 const intro=document.getElementById('intro');
 if(!intro)return;
