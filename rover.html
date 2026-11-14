@@ -63,7 +63,6 @@ linear-gradient(145deg,#15101a,#3a1d20 55%,#100d13)
 color:var(--gold);
 letter-spacing:4px;
 text-transform:uppercase;
-font-size:.78rem
 }
 
 .hero h1{
@@ -578,6 +577,102 @@ section{padding:55px 6%}
 html{scroll-behavior:auto}
 .event{transition:none}
 }
+
+
+.gallery-tabs {
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin:30px 0;
+}
+
+.rover-button {
+  cursor:pointer;
+  padding:13px 30px;
+  border:1px solid var(--rust);
+  background:transparent;
+  color:var(--ink);
+  border-radius:5px;
+  font-weight:bold;
+  letter-spacing:1px;
+  transition:.2s;
+}
+
+.rover-button:hover {
+  background:var(--gold);
+  color:#180f0d;
+}
+
+.rover-button.active {
+  background:var(--rust);
+  color:#180f0d;
+}
+
+/* IMAGE COLLECTIONS */
+
+.collection {
+  display:none;
+}
+
+.collection.active {
+  display:block;
+  padding: 0;
+}
+.container {
+  max-width:1150px;
+  padding: 72px 7%;
+  margin:auto;
+}
+
+.image-gallery {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
+  margin-top:25px;
+}
+
+.gallery-image {
+  background:var(--panel);
+  border:1px solid #45363b;
+  padding:15px;
+  border-radius:9px;
+  min-width:0;
+}
+
+.gallery-image img {
+  display:block;
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:contain;
+  background:#0a080b;
+  border-radius:9px;
+}
+
+.gallery-image p {
+  color:var(--gold);
+  font-weight:bold;
+}
+
+.credit {
+  font-size:.8rem;
+  color:var(--muted);
+}
+
+.gallery-image a {
+  color:var(--blue);
+  font-size:.85rem;
+}
+
+@media(max-width:650px) {
+  body {
+    padding:35px 6%;
+  }
+
+  .image-gallery {
+    grid-template-columns:1fr;
+  }
+}
 </style>
 </head>
 
@@ -587,11 +682,12 @@ html{scroll-behavior:auto}
 
 <div class="intro" id="intro">
 <div class="intro-stars" aria-hidden="true"></div>
-
+<div>
+<h1 class="eyebrow">A planetary investigation</h1>
+<h2 class="eyebrowTitle">THE MARS FILES</h2>
+</div>
 <div class="crawl-wrap">
 <div class="crawl">
-<p class="eyebrow">A planetary investigation</p>
-<h2>THE MARS FILES</h2>
 <p>In 2003, two robotic explorers began a journey to the Red Planet.</p>
 <p>Their names were Spirit and Opportunity.</p>
 <p>Their mission was to investigate the Martian surface and search for clues about its ancient past.</p>
@@ -823,6 +919,155 @@ Opportunity found iron-rich spherules and layered rocks showing that liquid wate
 The rovers did not discover life. They found evidence that helped scientists understand whether ancient Mars had environments where liquid water could exist.
 </p>
 </section>
+
+<div class="container">
+
+  <div class="eyebrow">NASA IMAGE COLLECTION</div>
+
+  <h1>The Rover Archive</h1>
+
+  <p>
+    Explore photographs from the missions of Spirit and
+    Opportunity. Select a rover to discover its collection
+    of images from the Martian surface.
+  </p>
+
+  <!-- ROVER BUTTONS -->
+
+  <div class="gallery-tabs">
+
+    <button
+      class="rover-button active"
+      onclick="showRover('spirit',this)"
+      aria-pressed="true">
+      SPIRIT
+    </button>
+
+    <button
+      class="rover-button"
+      onclick="showRover('opportunity',this)"
+      aria-pressed="false">
+      OPPORTUNITY
+    </button>
+
+  </div>
+
+
+  <!-- SPIRIT ARCHIVE -->
+
+  <section class="collection active" id="spirit">
+
+    <h2>Spirit Archive</h2>
+
+    <div class="image-gallery">
+
+      <div class="gallery-image">
+
+        <img
+          src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia04/pia04993/PIA04993.jpg?crop=faces%2Cfocalpoint&fit=clip&h=312&w=1536"
+          alt="NASA Spirit rover image"
+          loading="lazy">
+
+        <p>Spirit — Image 01</p>
+
+        <div class="credit">
+          NASA / JPL-Caltech
+        </div>
+
+        <a
+          href="https://photojournal.jpl.nasa.gov/catalog/PIA04993"
+          target="_blank">
+          View NASA source
+        </a>
+
+      </div>
+
+
+      <div class="gallery-image">
+
+        <img
+          src="https://assets.science.nasa.gov/dynamicimage/assets/science/psd/photojournal/pia/pia16/pia16440/PIA16440.jpg?crop=faces%2Cfocalpoint&fit=clip&h=435&w=1536"
+          alt="Spirit rover McMurdo panorama"
+          loading="lazy">
+
+        <p>Spirit — McMurdo Panorama</p>
+
+        <div class="credit">
+          NASA / JPL-Caltech / Cornell University /
+          Arizona State University
+        </div>
+
+        <a
+          href="https://science.nasa.gov/photojournal/spirit-mars-rover-in-mcmurdo-panorama/"
+          target="_blank">
+          View NASA source
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OPPORTUNITY ARCHIVE -->
+
+  <section class="collection" id="opportunity">
+
+    <h2>Opportunity Archive</h2>
+
+    <div class="image-gallery">
+
+      <div class="gallery-image">
+
+        <img
+          src="https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia19/pia19157/PIA19157.jpg"
+          alt="Opportunity rover surpasses marathon distance"
+          loading="lazy">
+
+        <p>Opportunity — Marathon Distance</p>
+
+        <div class="credit">
+          NASA / JPL-Caltech / University of Arizona
+        </div>
+
+        <a
+          href="https://photojournal.jpl.nasa.gov/catalog/PIA19157"
+          target="_blank">
+          View NASA source
+        </a>
+
+      </div>
+
+
+      <div class="gallery-image">
+
+        <img
+          src="https://assets.science.nasa.gov/content/dam/science/psd/photojournal/pia/pia18/pia18079/PIA18079.jpg"
+          alt="Opportunity rover self portrait"
+          loading="lazy">
+
+        <p>Opportunity — Self-Portrait (2014)</p>
+
+        <div class="credit">
+          NASA / JPL-Caltech / Cornell University /
+          Arizona State University
+        </div>
+
+        <a
+          href="https://science.nasa.gov/photojournal/self-portrait-by-freshly-cleaned-opportunity-mars-rover-in-march-2014/"
+          target="_blank">
+          View NASA source
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
 
 <!-- AUDIO -->
 
@@ -1310,6 +1555,7 @@ buildQuiz();
 document.querySelector('.intro .crawl').addEventListener('animationend',enterSite,{once:true});
 
 function enterSite(){
+  window.scrollTo(0,0)
 const intro=document.getElementById('intro');
 if(!intro)return;
 
@@ -1318,6 +1564,28 @@ intro.classList.add('hidden');
 window.setTimeout(()=>{
 intro.style.display='none';
 },800);
+}
+
+function showRover(rover, button) {
+
+  // Hide all image collections
+  document.querySelectorAll('.collection').forEach(section => {
+    section.classList.remove('active');
+  });
+
+  // Remove active state from all buttons
+  document.querySelectorAll('.rover-button').forEach(tab => {
+    tab.classList.remove('active');
+    tab.setAttribute('aria-pressed','false');
+  });
+
+  // Display selected rover
+  document.getElementById(rover).classList.add('active');
+
+  // Highlight selected button
+  button.classList.add('active');
+  button.setAttribute('aria-pressed','true');
+
 }
 
 </script>
